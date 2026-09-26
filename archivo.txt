@@ -1,0 +1,48 @@
+Practica 2: Configuración de parametros de red.
+date
+nmcli device status
+sudo nmcli con modify ens160 ipv4.method auto
+sudo nmcli con up ens160
+ip address
+ping -c 3 google.com
+sudo nmcli con modify ens160 ipv4.method manual ipv4.addresses 192.168.1.50/24 ipv4.gateway 192.168.1.1
+sudo nmcli con modify ens160 ipv4.method manual ipv4.addresses 192.168.1.50/24 ipv4.gateway 192.168.1.1
+sudo nmcli con up ens160
+sudo nmcli con modify ens160 "8.8.8.8,8.8.4.4"
+sudo nmcli con modify ens160 ipv4.dns "8.8.8.8,8.8.4.4"
+sudo nmcli con modify ens160 ipv4.dns "8.8.8.8 8.8.4.4"
+sudo nmcli con up ens160
+cat /etc/resolv.conf
+cat /etc/resolv.conf
+nmtui
+
+
+
+ Practica 3: Gestion de Usuario y grupos 
+ 
+ sudo groupadd guest
+sudo useradd
+id wilmin29
+sudo usermod -aG guest 
+id wilmin29
+sudo usermod -aG wheel 
+id wilmin29
+sudo groupdel guest
+grep guest /etc/group
+sudo userdel -r wilmin29
+id wilmin29
+ 
+
+Practica 4: Gestion de Permisos de archivos
+
+mkdir materia
+cd materia
+vi estudiante.txt
+chmod 700 estudiante.txt
+chmod 070 estudiante.txt
+cd ..
+mkdir materia2
+cp materia/estudiante.txt materia2/
+rm -r materia
+ls
+
