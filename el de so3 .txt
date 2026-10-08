@@ -1,0 +1,45 @@
+primera practica 
+
+sudo dnf check-update
+sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm -y
+sudo dnf repolist
+sudo dnf makecache
+sudo dnf install bashtop -y
+sudo dnf remove bashtop -y
+rm -rf ~/.config/bashtop
+sudo dnf autoremove -y
+
+segunda paratica 
+sudo crontab -e
+sudo crontab -l
+sudo crontab -e
+sudo crontab -l
+sudo systemctl star atd
+sudo systemctl start atd
+ls /tmp
+sudo "rm -rf /tmp/*" | at now + 1 minute
+
+tercera practica
+lsblk
+sudo fdisk /dev/nvme0n2
+lsblk
+sudo mkfs.ext4 /dev/nvme0n2p1
+mkdir ~/Desktop/disco
+sudo mount /dev/nvme0n2p1 ~/Desktop/disco
+df -h
+cd ~/Desktop/disco
+sudo touch AdrianAlcantara.txt
+ls
+cd ~
+sudo umount /dev/nvme0n2p1
+sudo mount /dev/nvme0n2p1 /mnt
+df -h
+cd /mnt
+ls
+ls
+cd ~
+sudo umount /dev/nvme0n2p1
+sudo mount /dev/nvme0n2p1 /mnt
+df -h
+cd /mnt
+ls
