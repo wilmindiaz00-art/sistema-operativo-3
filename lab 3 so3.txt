@@ -1,0 +1,39 @@
+practica 1
+
+date
+sudo nano /etc/default/grub
+sudo grub-mkconfig -o /boot/grub2/grub.cfg
+sudo reboot
+
+practica 2
+
+date
+nano wilmin.sh
+chmod +x wilmin.sh
+nano redes.sh
+chmod +x redes.sh
+ls redes.sh
+ls -la
+
+practica 3
+
+ip addr
+ping 192.168.1.32
+type $env:USERPROFILE\.ssh\id_rsa.pub | ssh wilmindiaz@192.168.1.32 "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod 700 ~/.ssh && chmod 600 ~/.ssh/authorized_keys"
+sudo systemctl start sshd
+sudo systemctl enable sshd
+sudo systemctl status sshd
+
+# 1. Primer intento (falló porque la clave no existía todavía)
+type $env:USERPROFILE\.ssh\id_rsa.pub | ssh wilminiaz@192.168.1.32 "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod 700 ~/.ssh && chmod 600 ~/.ssh/authorized_keys"
+
+# 2. Generar par de claves SSH
+ssh-keygen -t rsa
+
+# 3. Enviar la clave pública al servidor (después de crearla)
+type $env:USERPROFILE\.ssh\id_rsa.pub | ssh wilminiaz@192.168.1.32 "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod 700 ~/.ssh && chmod 600 ~/.ssh/authorized_keys"
+
+# 4. Conectarse por SSH
+ssh wilminiaz@192.168.1.32
+
+
