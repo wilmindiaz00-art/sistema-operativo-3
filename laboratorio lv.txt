@@ -1,0 +1,63 @@
+# practica 1 
+
+sudo dnf install httpd -y
+sudo systemctl start httpd
+sudo systemctl enable httpd
+sudo mkdir -p /var/www/html/sitio80
+sudo mkdir -p /var/www/html/sitio8080
+echo "Hola Mundo" | sudo tee /var/www/html/sitio80/index.html
+echo "Bienvenido - Wilmin Diaz, Matricula: 2026-0839, Materia: Sistema Operativo 3" | sudo tee /var/www/html/sitio8080/index.html
+sudo nano /etc/httpd/conf.d/vhost.conf
+sudo systemctl restart httpd
+sudo firewall-cmd --permanent --add-port=80/tcp
+sudo firewall-cmd --permanent --add-port=8080/tcp
+sudo firewall-cmd --reload
+
+en nano 
+
+Listen 80
+Listen 8080
+
+<VirtualHost *:80>
+    DocumentRoot "/var/www/html/sitio80"
+    ServerName localhost
+</VirtualHost>
+
+<VirtualHost *:8080>
+    DocumentRoot "/var/www/html/sitio8080"
+    ServerName localhost
+</VirtualHost>
+
+
+# practica 2 
+
+sudo dnf install postfix -y
+sudo systemctl start postfix
+sudo systemctl enable postfix
+echo "Nombre: Wilmin Diaz - Matricula: 2026-0839 - Materia: sistema operativo 3" | mail -s "MambruSeFueALaguerra" os3conadrian@gmail.com
+sudo systemctl restart postfix
+sudo tail -n 20 /var/log/maillog
+
+# practica 3
+
+sudo -i
+VER=$(rpm -E %rhel); echo $VER
+ip a | grep "inet "
+dnf install -y cups
+systemctl enable --now cups
+systemctl status cups --no-pager | head -5
+subscription-manager repos --enable codeready-builder-for-rhel-$VER-$(arch)-rpms
+dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-$VER.noarch.rpm
+dnf install -y cups-pdf ghostscript
+systemctl restart cups
+lpadmin -p PDF-Virtual -E -v cups-pdf:/ -m CUPS-PDF_noopt.ppd
+lpadmin -p PDF-Virtual -o printer-is-shared=true
+cupsctl --share-printers --remote-any
+lpstat -p -d
+firewall-cmd --permanent --add-service=ipp
+firewall-cmd --reload
+systemctl restart cups
+echo "Prueba de impresion" > /tmp/prueba.txt
+lp -d PDF-Virtual /tmp/prueba.txt
+sleep 5
+ls -laR /var/spool/cups-pdf/
